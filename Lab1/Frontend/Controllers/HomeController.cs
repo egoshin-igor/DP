@@ -8,11 +8,12 @@ using frontend.Models;
 using Frontend;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Frontend.Clients;
 
 namespace frontend.Controllers
 {
     public class HomeController : Controller
-    {        
+    {
         BackendClient _backendClient;
 
         public HomeController(BackendClient backendClient)
@@ -34,7 +35,7 @@ namespace frontend.Controllers
         [Route("upload")]
         [HttpPost]
         public async Task<IActionResult> UploadAsync(string data)
-        {            
+        {
             return Ok(await _backendClient.PostAsync<string, string>(data, "api/values"));
         }
 

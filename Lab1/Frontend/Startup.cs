@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Frontend;
+using Frontend.Clients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +28,7 @@ namespace frontend
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton(Configuration.GetSection("GeneralSettings").Get<GeneralSettings>());
-            services.AddSingleton<BackendClient>();
+            services.AddHttpClient<BackendClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
