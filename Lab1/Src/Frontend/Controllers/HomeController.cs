@@ -37,7 +37,7 @@ namespace frontend.Controllers
         public async Task<IActionResult> UploadAsync(string data)
         {
             return Ok(await _backendClient.PostAsync<string, string>(data, "api/values"));
-        }
+        } 
 
         public IActionResult Error()
         {

@@ -9,7 +9,7 @@ namespace Lib.Http.Client
 {
     public class BaseClient
     {
-        private HttpClient _client;
+        private readonly HttpClient _client;
 
         protected BaseClient(HttpClient client, string baseUrl)
         {
@@ -23,7 +23,7 @@ namespace Lib.Http.Client
         {
         }
 
-        public async Task<Response<R>> PostAsync<R, D>(D data, string path)
+        public async Task<Response<R>>   PostAsync<R, D>(D data, string path)
         {
             const int internalServerError = 500;
 
