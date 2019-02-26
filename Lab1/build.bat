@@ -10,8 +10,6 @@ dotnet publish -c Release
 cd "%baseUrl%\Src\Backend"
 dotnet publish -c Release
 
-RD /s /q "%CD%\%1\"
-
 mkdir "%baseUrl%\%1\Src\Frontend"
 xcopy "%baseUrl%\Src\Frontend\bin" "%baseUrl%\%1\Src\Frontend\" /S /E /Y
 
