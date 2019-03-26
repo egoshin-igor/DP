@@ -3,6 +3,8 @@ if %1 == "Src\Frontend" goto error
 if %1 == "Src\BackendApi" goto error
 if %1 == "Src\TextListener" goto error
 if %1 == "Src\TextRankCalc" goto error
+if %1 == "Src\VowelConsCounter" goto error
+if %1 == "Src\VowelConsRater" goto error
 
 set baseUrl=%CD%
 
@@ -18,6 +20,12 @@ dotnet publish -c Release
 cd "%baseUrl%\Src\TextRankCalc"
 dotnet publish -c Release
 
+cd "%baseUrl%\Src\VowelConsCounter"
+dotnet publish -c Release
+
+cd "%baseUrl%\Src\VowelConsRater"
+dotnet publish -c Release
+-------------
 mkdir "%baseUrl%\%1\Src\Frontend"
 xcopy "%baseUrl%\Src\Frontend\bin" "%baseUrl%\%1\Src\Frontend\" /S /E /Y
 
@@ -30,6 +38,12 @@ xcopy "%baseUrl%\Src\TextListener\bin" "%baseUrl%\%1\Src\TextListener\" /S /E /Y
 mkdir "%baseUrl%\%1\Src\TextRankCalc"
 xcopy "%baseUrl%\Src\TextRankCalc\bin" "%baseUrl%\%1\Src\TextRankCalc\" /S /E /Y
 
+mkdir "%baseUrl%\%1\Src\VowelConsCounter"
+xcopy "%baseUrl%\Src\VowelConsCounter\bin" "%baseUrl%\%1\Src\VowelConsCounter\" /S /E /Y
+
+mkdir "%baseUrl%\%1\Src\VowelConsRater"
+xcopy "%baseUrl%\Src\VowelConsRater\bin" "%baseUrl%\%1\Src\VowelConsRater\" /S /E /Y
+--------------
 copy /Y "%baseUrl%\run.bat" "%baseUrl%\%1\run.bat"
 copy /Y "%baseUrl%\config.txt" "%baseUrl%\%1\config.txt"
 copy /Y "%baseUrl%\stop.bat" "%baseUrl%\%1\stop.bat"
