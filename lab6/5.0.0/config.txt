@@ -1,2 +1,2 @@
-vowelConsCounter 1
-vowelConsRater 1
+vowelConsCounter 3
+vowelConsRater 2

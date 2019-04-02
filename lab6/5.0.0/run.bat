@@ -1,13 +1,13 @@
 set baseUrl=%CD%
 
 cd "%baseUrl%\Src\Frontend\Release\netcoreapp2.1\publish"
-start dotnet frontend.dll
+start "Frontend" dotnet frontend.dll
 cd "%baseUrl%\Src\BackendApi\Release\netcoreapp2.1\publish"
-start dotnet backend.dll
+start "Backend" dotnet backend.dll
 cd "%baseUrl%\Src\TextListener\Release\netcoreapp2.1\publish"
-start dotnet TextListener.dll
+start "TextListener" dotnet TextListener.dll
 cd "%baseUrl%\Src\TextRankCalc\Release\netcoreapp2.2\publish"
-start dotnet TextRankCalc.dll
+start "TextRankCalc" dotnet TextRankCalc.dll
 
 cd "%baseUrl%
 SetLocal EnableDelayedExpansion
@@ -22,10 +22,10 @@ set vowelConsRater=%vowelConsRater:~-1%
 
 
 cd "%baseUrl%\Src\VowelConsCounter\Release\netcoreapp2.2\publish"
-for /l %%n in (1,1,!vowelConsCounter!) DO start dotnet VowelConsCounter.dll
+for /l %%n in (1,1,!vowelConsCounter!) DO start "VowelConsCounter" dotnet VowelConsCounter.dll
 
 cd "%baseUrl%\Src\VowelConsRater\Release\netcoreapp2.2\publish"
-for /l %%n in (1,1,!vowelConsRater!) DO start dotnet VowelConsRater.dll
+for /l %%n in (1,1,!vowelConsRater!) DO start "VowelConsRater" dotnet VowelConsRater.dll
 
 if errorlevel 0 goto exit
 :error

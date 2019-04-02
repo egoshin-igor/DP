@@ -20,11 +20,11 @@ namespace TextRankCalc.IntegrationEventHandlers
 
         public override void Handle(IntegrationEvents.TextCreated @event)
         {
-            Console.WriteLine($"Database: {@event.DatabaseNumber}, {@event.TextId}");
+            Console.WriteLine($"Database: {_storage.Get(@event.TextId)}, {@event.TextId}");
             _storage.AddMessageToQueue(queueName: "VowelConsCounter", message: $"id:{@event.TextId}");
             _bus.Publish(
                 busName: "VowelConsCounter",
-                busMessage: new BusMessage.TextCreated { DatabaseNumber = @event.DatabaseNumber }
+                busMessage: new BusMessage.TextCreated {}
             );
         }
     }

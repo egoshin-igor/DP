@@ -35,6 +35,7 @@ namespace BackendApi.Controllers
             string id = Guid.NewGuid().ToString();
             int databaseNumber = GetDatabaseNumberByRegionType(uploadDto.RegionType);
             _storage.Set(id, uploadDto.Text, databaseNumber);
+            _storage.Set(id, databaseNumber.ToString());
             _eventBus.Publish(new TextCreated { TextId = id, DatabaseNumber = databaseNumber });
 
             return id;
@@ -43,7 +44,7 @@ namespace BackendApi.Controllers
         [HttpGet("rank")]
         public double? GetRank([FromQuery]string textId)
         {
-            int? databaseNumber = GetDatabaseNumberByKey(textId);
+            int? databaseNumber = int.Parse(_storage.Get(textId));
             if (databaseNumber == null)
             {
                 return null;
@@ -73,19 +74,6 @@ namespace BackendApi.Controllers
                 default:
                     throw new ApplicationException("Undefined region");
             }
-        }
-
-        private int? GetDatabaseNumberByKey(string key) 
-        {
-            foreach(int i in _regionDatabaseNumbers.GetNumbers())
-            {
-                if (_storage.Get(key, retryCount: 1, databaseNumber: i) != null)
-                {
-                    return i;
-                }
-            }
-
-            return null;
         }
     }
 }

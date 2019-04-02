@@ -18,15 +18,16 @@ namespace VowelConsCounter.BusMessageHandlers
         }
         public void Handle(TextCreated busMessage)
         {
-            const string vowelConsCounerQueueName = "VowelConsCounter";
+            const string vowelConsCounterQueueName = "VowelConsCounter";
 
-            string job = _keyValueStorage.GetMessageFromQueue(vowelConsCounerQueueName);
+            string job = _keyValueStorage.GetMessageFromQueue(vowelConsCounterQueueName);
             while (job != null)
             {
                 string contextId = job.Split(':')[1];
-                Console.WriteLine($"Database: {busMessage.DatabaseNumber}, {contextId}");
+                int databaseNumber = int.Parse(_keyValueStorage.Get(contextId));
+                Console.WriteLine($"Database: {databaseNumber}, {contextId}");
                 
-                string text = _keyValueStorage.Get(contextId, retryCount: 1 , databaseNumber: busMessage.DatabaseNumber);
+                string text = _keyValueStorage.Get(contextId, retryCount: 1 , databaseNumber: databaseNumber);
 
                 KeyValuePair<int, int> vowelConsCount = GetVowelConsCount(text);
 
@@ -37,10 +38,10 @@ namespace VowelConsCounter.BusMessageHandlers
 
                 _bus.Publish(
                     busName: "VowelConsRater",
-                    busMessage: new VowelConsCounted { DatabaseNumber = busMessage.DatabaseNumber }
+                    busMessage: new VowelConsCounted {}
                 );
 
-                job = _keyValueStorage.GetMessageFromQueue(vowelConsCounerQueueName);
+                job = _keyValueStorage.GetMessageFromQueue(vowelConsCounterQueueName);
             }
         }
 

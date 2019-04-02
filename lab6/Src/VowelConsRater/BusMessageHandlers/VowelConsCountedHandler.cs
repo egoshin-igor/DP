@@ -23,13 +23,14 @@ namespace VowelConsRater.BusMessageHandlers
                 string[] jobParts = job.Split(':');
 
                 string contextId = jobParts[0];
-                Console.WriteLine($"Database: {busMessage.DatabaseNumber}, {contextId}");
+                int databaseNumber = int.Parse(_keyValueStorage.Get(contextId));
+                Console.WriteLine($"Database: {databaseNumber}, {contextId}");
                 
                 int vowelsCount = int.Parse(jobParts[1]);
                 int consCount = int.Parse(jobParts[2]);
 
                 double rank = consCount != 0 ? (double)vowelsCount / consCount : double.PositiveInfinity;
-                _keyValueStorage.Set($"Rank_{contextId}", rank.ToString(), busMessage.DatabaseNumber);
+                _keyValueStorage.Set($"Rank_{contextId}", rank.ToString(), databaseNumber);
 
                 job = _keyValueStorage.GetMessageFromQueue(queueName);
             }

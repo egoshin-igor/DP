@@ -18,8 +18,9 @@ namespace TextListener.IntegrationEventHandlers
 
         public override void Handle(TextCreated @event)
         {
-            Console.WriteLine($"Database: {@event.DatabaseNumber}, TextId: {@event.TextId}, " + 
-                $"Text: {_storage.Get(@event.TextId, retryCount: 1, databaseNumber: @event.DatabaseNumber)}");
+            int databaseNumber = int.Parse(_storage.Get(@event.TextId));
+            Console.WriteLine($"Database: {databaseNumber}, TextId: {@event.TextId}, " + 
+                $"Text: {_storage.Get(@event.TextId, retryCount: 1, databaseNumber: databaseNumber)}");
         }
     }
 }
