@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Upload";
+}
+<div class="row body-content">
+    <form autocomplete="off" class="form" method="POST">
+        <div class="form-input">Data: <input name="data" type="text" /></div>
+        <p><select name="regionType">
+            <option value=@RegionType.Ru>RU</option>
+            <option value=@RegionType.Eu>EU</option>
+            <option value=@RegionType.Usa>USA</option>
+        </select></p>
+        <input type="submit" />
+    </form>
+</div>

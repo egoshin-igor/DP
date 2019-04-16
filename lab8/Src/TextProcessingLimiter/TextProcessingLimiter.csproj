@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lib\integrationevent\IntegrationEvent.csproj" />
+    <ProjectReference Include="..\lib\keyvaluestorage\KeyValueStorage.csproj" />
+    <ProjectReference Include="..\Lib\KeyValueStorage.Abstractions\KeyValueStorage.Abstractions.csproj" />
+    <ProjectReference Include="..\Lib\Bus\Bus.csproj" />
+    <ProjectReference Include="..\Lib\Bus.Abstractions\Bus.Abstractions.csproj" />
+  </ItemGroup>
+  
+</Project>

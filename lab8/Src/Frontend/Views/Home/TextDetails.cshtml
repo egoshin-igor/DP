@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Text details";
+    @model TextProcessingResultDto;
+}
+<div class="row body-content">
+    @if(Model.IsTextProcessingAllowed)
+    {
+        double rank = @Model.Rank ?? 0;
+        <p style="margin-top: 5px;">Ранг: @rank</p>
+    }
+    else
+    {
+        <p style="margin-top: 5px;">Количество бесплатных обработок закончилось. Зайдите через минуту</p>
+    }
+</div>

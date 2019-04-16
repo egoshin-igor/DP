@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    @model TextStatisticDto;
+}
+<div class="row body-content">
+    @if(Model != null)
+    {
+        <p>Text number: @Model.TextNum</p>
+        <p>High rank part:@Model.HighRankPart</p>
+        <p>Average rank:@Math.Round(Model.AvgRank, 2)</p>
+        <p>Failure text count:@Model.FailureTextCount</p>
+    }
+    else
+    {
+        <p>Пока нет информации для статистики</p>
+    }
+</div>

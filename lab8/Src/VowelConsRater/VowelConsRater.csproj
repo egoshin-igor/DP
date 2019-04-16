@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lib\KeyValueStorage\KeyValueStorage.csproj" />
+    <ProjectReference Include="..\Lib\KeyValueStorage.Abstractions\KeyValueStorage.Abstractions.csproj" />
+    <ProjectReference Include="..\Lib\Bus\Bus.csproj" />
+    <ProjectReference Include="..\Lib\Bus.Abstractions\Bus.Abstractions.csproj" />
+    <ProjectReference Include="..\Lib\IntegrationEvent\IntegrationEvent.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+</Project>
